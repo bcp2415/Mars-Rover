@@ -13,6 +13,8 @@ describe("Message class", function() {
     expect(new Message('testThisName').name).toEqual('testThisName');
   });
 
-  
+  it("contains a commands array passed into the constructor as 2nd argument", function() {
+    expect(new Message('testThisName', [12, 12, 13]).commands).toEqual([12, 12, 13]);
+  });
 
 });
