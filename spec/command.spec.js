@@ -13,4 +13,8 @@ describe("Command class", function() {
     expect(new Command('MOVE').commandType).toEqual('MOVE');
   });
 
+  it("constructor sets a value passed in as the 2nd argument", function() {
+    expect(new Command('MOVE', 50).value).toEqual(50);
+  });
+
 });
