@@ -7,7 +7,8 @@ class Rover {
    }
   receiveMessage(message) {
     return {
-      message: message.name
+      message: message.name,
+      results: message.commands
     }
   }
 }
