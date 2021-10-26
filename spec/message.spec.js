@@ -9,4 +9,10 @@ describe("Message class", function() {
     expect( function() { new Message();}).toThrow(new Error('Message name required.'));
   });
 
+  it("constructor sets name", function() {
+    expect(new Message('testThisName').name).toEqual('testThisName');
+  });
+
+  
+
 });
