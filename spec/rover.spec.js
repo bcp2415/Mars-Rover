@@ -29,4 +29,14 @@ describe("Rover class", function() {
     const response = rover.receiveMessage(message);
     expect(response.results.length).toEqual(2)
   });
+
+  it("responds correctly to status check command", function() {
+    const commands = [new Command('STATUS_CHECK')];
+    const message = new Message('Test status check command', commands);
+    const rover = new Rover(98382);
+    const response = rover.receiveMessage(message);
+    expect(response.results[0].roverStatus.mode).toEqual('NORMAL');
+    expect(response.results[0].roverStatus.generatorWatts).toEqual(110);
+    expect(response.results[0].roverStatus.position).toEqual(98382);
+  });
 });
