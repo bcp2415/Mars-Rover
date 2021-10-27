@@ -6,27 +6,31 @@ class Rover {
     this.generatorWatts = 110;
   }
   receiveMessage(message) {
-    if (message.commands[0].commandType === 'STATUS_CHECK') {
-      return {
-        message: message.name,
-        results: [
-          {
-            completed: true,
-            roverStatus: {
-              mode: this.mode,
-              generatorWatts: this.generatorWatts,
-              position: this.position
-            }
-          }
-        ]
-      }
-    } else {
-      return {
-        message: message.name,
-        results: message.commands
-      };
-    }
+    let response = {
+      message:  message.name
+    };
+    let results = [];
     
+    for (const command of message.commands) {
+      if (command.commandType === 'STATUS_CHECK') {
+        results.push({
+              completed: true,
+              roverStatus: {
+                mode: this.mode,
+                generatorWatts: this.generatorWatts,
+                position: this.position
+              }
+        });
+        console.log(results);
+      } else {
+        results.push(command);
+        console.log(reults);
+      }
+          
+    }
+    response('results') = results;
+    console.log(`response is as follows: `, response);
+    return response;
   };
 }
 
