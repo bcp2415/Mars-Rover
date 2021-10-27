@@ -6,9 +6,8 @@ class Rover {
     this.generatorWatts = 110;
   }
   receiveMessage(message) {
-    let response = {
-      message:  message.name
-    };
+    let response = {};
+    response["message"] = message.name;
     let results = [];
     
     for (const command of message.commands) {
@@ -24,11 +23,11 @@ class Rover {
         console.log(results);
       } else {
         results.push(command);
-        console.log(reults);
+        console.log(results);
       }
           
     }
-    response('results') = results;
+    response['results'] = results;
     console.log(`response is as follows: `, response);
     return response;
   };
