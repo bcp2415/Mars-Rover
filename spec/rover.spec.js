@@ -39,7 +39,13 @@ describe("Rover class", function() {
     expect(response.results[0].roverStatus.generatorWatts).toEqual(rover.generatorWatts);
     expect(response.results[0].roverStatus.position).toEqual(rover.position);
 
-    
+    const commands2 = [new Command('MOVE', 98000), new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+    const message2 = new Message('Test STATUS_CHECK command after changing default values for mode and position', commands2);
+    rover.generatorWatts = 100;
+    const response2 = rover.receiveMessage(message2);
+    expect(response2.results[2].roverStatus.position).toEqual(98000);
+    expect(response2.results[2].roverStatus.mode).toEqual('LOW_POWER');
+    expect(response2.results[2].roverStatus.generatorWatts).toEqual(100);
   });
 
   it("responds correctly to mode change command", function() {
