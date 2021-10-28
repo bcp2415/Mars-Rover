@@ -39,4 +39,8 @@ describe("Rover class", function() {
     expect(response.results[0].roverStatus.generatorWatts).toEqual(110);
     expect(response.results[0].roverStatus.position).toEqual(98382);
   });
+
+  it("responds correctly to mode change command", function() {
+    
+  });
 });
