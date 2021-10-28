@@ -42,14 +42,18 @@ describe("Rover class", function() {
 
   it("responds correctly to mode change command", function() {
     const commands = [new Command('MODE_CHANGE', 'LOW_POWER')];
-    //const commands2 = [new Command('MODE_CHANGE', 'NORMAL')];
     const message = new Message('Test mode change to low power', commands);
-    //const message2 = new Message('Test mode change to normal', commands2);
     const rover = new Rover(98382);
     const response = rover.receiveMessage(message);
-    //const response2 = rover.receiveMessage(message2);
     expect(response.results[0].completed).toEqual(true);
     rover.receiveMessage(message);
     expect(rover.mode).toEqual('LOW_POWER');
+
+    const commands2 = [new Command('MODE_CHANGE', 'NORMAL')];
+    const message2 = new Message('Test mode change to normal', commands2);
+    const response2 = rover.receiveMessage(message2);
+    expect(response.results[0].completed).toEqual(true);
+    rover.receiveMessage(message2);
+    expect(rover.mode).toEqual('NORMAL');
   });
 });
