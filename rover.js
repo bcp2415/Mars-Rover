@@ -20,10 +20,11 @@ class Rover {
                 position: this.position
               }
         });
-      } else if (command.commandType === 'MODE_CHANGE') {
+      } else if (command.commandType === 'MODE_CHANGE' && command.value === 'LOW_POWER') {
         results.push({
           completed:  true
         });
+        this.mode = 'LOW_POWER';
       } else {
         results.push(command);
       }
