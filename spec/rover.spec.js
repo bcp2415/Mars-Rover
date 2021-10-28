@@ -56,4 +56,22 @@ describe("Rover class", function() {
     rover.receiveMessage(message2);
     expect(rover.mode).toEqual('NORMAL');
   });
+
+  it("responds with false completed value when attempting to move in LOW_POWER mode", function() {
+    const rover = new Rover(98382);
+    rover.mode = 'LOW_POWER';
+    const commands = [new Command('MOVE', 98383)];
+    const message = new Message('Test MOVE command in low power mode', commands);
+    const response = rover.receiveMessage(message);
+    expect(response.results[0].completed).toEqual(false);
+    expect(rover.position).toEqual(98382);
+  });
+
+  it("responds with position for move command", function() {
+    const rover = new Rover(98382);
+    const commands = [new Command('MOVE', 98383)];
+    const message = new Message('Test MOVE command', commands);
+    rover.receiveMessage(message);
+    expect(rover.position).toEqual(98383);
+  });
 });
