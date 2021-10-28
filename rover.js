@@ -20,15 +20,12 @@ class Rover {
                 position: this.position
               }
         });
-        console.log(results);
       } else {
         results.push(command);
-        console.log(results);
       }
           
     }
     response['results'] = results;
-    console.log(`response is as follows: `, response);
     return response;
   };
 }
