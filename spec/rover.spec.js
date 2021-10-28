@@ -35,9 +35,11 @@ describe("Rover class", function() {
     const message = new Message('Test status check command', commands);
     const rover = new Rover(98382);
     const response = rover.receiveMessage(message);
-    expect(response.results[0].roverStatus.mode).toEqual('NORMAL');
-    expect(response.results[0].roverStatus.generatorWatts).toEqual(110);
-    expect(response.results[0].roverStatus.position).toEqual(98382);
+    expect(response.results[0].roverStatus.mode).toEqual(rover.mode);
+    expect(response.results[0].roverStatus.generatorWatts).toEqual(rover.generatorWatts);
+    expect(response.results[0].roverStatus.position).toEqual(rover.position);
+
+    
   });
 
   it("responds correctly to mode change command", function() {
